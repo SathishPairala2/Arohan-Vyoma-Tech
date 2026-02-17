@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 95" fill="none">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- AVT Monogram -->
+  <!-- A -->
+  <path d="M12 55 L28 14 L44 55 M19 42 L37 42" stroke="url(#grad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- V -->
+  <path d="M48 14 L62 55 L76 14" stroke="url(#grad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- T -->
+  <path d="M82 14 L110 14 M96 14 L96 55" stroke="url(#grad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Separator line -->
+  <rect x="122" y="16" width="2" height="38" rx="1" fill="url(#grad)" opacity="0.4"/>
+
+  <!-- Company Name -->
+  <text x="136" y="32" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="1.5">AROHAN VYOMA</text>
+  <text x="136" y="52" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="300" fill="url(#grad2)" letter-spacing="4">TECH</text>
+
+  <!-- Tagline -->
+  <text x="12" y="85" font-family="'Inter', 'Segoe UI', Arial, sans-serif" font-size="9" font-weight="400" fill="#b4b4c8" letter-spacing="2.5">BUILDING DIGITAL EXPERIENCES THAT MATTER</text>
+
+  <!-- Accent dot -->
+  <circle cx="62" cy="8" r="3" fill="url(#grad)"/>
+</svg>

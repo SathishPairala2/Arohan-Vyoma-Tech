@@ -1,0 +1,228 @@
+/* Portfolio Page Specific Styles */
+
+.portfolio-hero {
+  padding: 150px 0 80px;
+  background: var(--color-bg-secondary);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.portfolio-hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  background: linear-gradient(135deg, #fff 0%, var(--color-accent-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.portfolio-hero-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Portfolio Section Visuals */
+.portfolio-image {
+  position: relative;
+  overflow: hidden;
+  height: 280px;
+  background: #000;
+  perspective: 1200px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  /* Force GPU acceleration */
+}
+
+.diorama {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  /* Let the card handle interaction */
+}
+
+.portfolio-card:hover .diorama {
+  transform: rotateX(10deg) rotateY(-10deg);
+}
+
+.diorama-bg {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background-size: 400% 400%;
+  animation: meshGradient 15s ease infinite;
+  opacity: 0.4;
+  filter: blur(40px);
+  z-index: 1;
+}
+
+@keyframes meshGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.diorama-item {
+  position: relative;
+  z-index: 2;
+  font-size: 5rem;
+  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
+  transition: all 0.5s ease;
+  user-select: none;
+}
+
+.main-item {
+  transform: translateZ(50px);
+}
+
+.sub-item {
+  position: absolute;
+  font-size: 3rem;
+  top: 20%;
+  right: 20%;
+  transform: translateZ(20px);
+  opacity: 0.6;
+}
+
+.portfolio-card:hover .main-item {
+  transform: translateZ(80px) scale(1.1);
+}
+
+.portfolio-card:hover .sub-item {
+  transform: translateZ(40px) translate(-10px, -10px);
+  opacity: 1;
+}
+
+/* Project Specific Colors */
+.diorama-hospitality .diorama-bg {
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.diorama-travel .diorama-bg {
+  background-image: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.diorama-delivery .diorama-bg {
+  background-image: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.diorama-analytics .diorama-bg {
+  background-image: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.diorama-management .diorama-bg {
+  background-image: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.diorama-exam .diorama-bg {
+  background-image: linear-gradient(135deg, #a18cd1 0%, #5b86e5 100%);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.portfolio-card {
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+.portfolio-info {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-info h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.portfolio-info p {
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.tag {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  color: var(--color-accent-blue);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.cta-section {
+  padding: 6rem 0;
+  text-align: center;
+  background: var(--color-bg-primary);
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2.5rem;
+}

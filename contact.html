@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Arohan Vyoma Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="/"><img src="/images/avt-logo.svg" alt="Arohan Vyoma Tech" class="logo-img"></a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about.html" class="nav-link">About</a></li>
+                <li><a href="/services.html" class="nav-link">Services</a></li>
+                <li><a href="/portfolio.html" class="nav-link">Portfolio</a></li>
+                <li><a href="/process.html" class="nav-link">Process</a></li>
+                <li><a href="/contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="section contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Let's discuss your project and bring your ideas to life</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Details</h3>
+                    <p>Have a project in mind? Let's discuss how we can help you build something extraordinary.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <span class="contact-icon">📧</span>
+                            <div class="method-details">
+                                <h4>Email</h4>
+                                <p>infoarohanvyomatech@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <span class="contact-icon">📱</span>
+                            <div class="method-details">
+                                <h4>Phone</h4>
+                                <p>+91 6303974785</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <span class="contact-icon">📍</span>
+                            <div class="method-details">
+                                <h4>Location</h4>
+                                <p>Hyderabad, Telangana</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <!-- Contact Info -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder=" " required>
+                            <label for="name">Your Name *</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder=" " required>
+                            <label for="email">Email Address *</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder=" " required>
+                        <label for="phone">Phone Number *</label>
+                    </div>
+
+                    <!-- Business Info -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="company" name="company" placeholder=" ">
+                            <label for="company">Company / Business Name (Optional)</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="url" id="website" name="website" placeholder=" ">
+                            <label for="website">Reference Website (Optional)</label>
+                        </div>
+                    </div>
+
+                    <!-- Service Required -->
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">Service Required *</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="Website Development">
+                                <span>Website Development</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="Web Application">
+                                <span>Web Application</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="E-commerce Website">
+                                <span>E-commerce Website</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="Portfolio Website">
+                                <span>Portfolio Website</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="UI/UX Design">
+                                <span>UI/UX Design</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="Website Maintenance">
+                                <span>Website Maintenance</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="Other">
+                                <span>Other</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Project Details -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select id="budget" name="budget" required>
+                                <option value="" disabled selected>Project Budget *</option>
+                                <option value="₹5,000 – ₹10,000">₹5,000 – ₹10,000</option>
+                                <option value="₹10,000 – ₹25,000">₹10,000 – ₹25,000</option>
+                                <option value="₹25,000 – ₹50,000">₹25,000 – ₹50,000</option>
+                                <option value="₹50,000+">₹50,000+</option>
+                                <option value="Not sure">Not sure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select id="timeline" name="timeline" required>
+                                <option value="" disabled selected>Timeline *</option>
+                                <option value="Urgent (1–3 days)">Urgent (1–3 days)</option>
+                                <option value="1 week">1 week</option>
+                                <option value="2–4 weeks">2–4 weeks</option>
+                                <option value="Flexible">Flexible</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+                        <label for="message">Message / Project Details *</label>
+                    </div>
+
+                    <!-- Agreement -->
+                    <div class="agreement-group">
+                        <input type="checkbox" id="agreement" name="agreement" required>
+                        <label for="agreement">I agree to be contacted via Email / Phone / WhatsApp</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="/images/avt-logo.svg" alt="Arohan Vyoma Tech" class="logo-img footer-logo-img">
+                    <p>Building digital solutions that drive business growth.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: infoarohanvyomatech@gmail.com</p>
+                    <p>Phone: +91 6303974785</p>
+                    <p>Location: Hyderabad, Telangana</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="GitHub">💻</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Arohan Vyoma Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
