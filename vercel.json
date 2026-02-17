@@ -1,0 +1,7 @@
+{
+  "outputDirectory": ".",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
