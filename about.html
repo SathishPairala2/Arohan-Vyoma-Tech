@@ -6,10 +6,10 @@
     <link rel="icon" type="image/svg+xml" href="/images/avt-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us - Arohan Vyoma Tech</title>
+    <meta name="description"
+        content="Learn about Arohan Vyoma Tech - a passionate team of developers and designers dedicated to crafting exceptional digital solutions in Hyderabad." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>
@@ -26,6 +26,7 @@
                 <li><a href="/portfolio.html" class="nav-link">Portfolio</a></li>
                 <li><a href="/process.html" class="nav-link">Process</a></li>
                 <li><a href="/contact.html" class="nav-link">Contact</a></li>
+                <li><a href="/contact.html" class="nav-cta">Hire Us 🚀</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -36,7 +37,7 @@
     </nav>
 
     <!-- About Section -->
-    <section class="section about-section">
+    <section class="section about-section" style="padding-top: 8rem;">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">About Arohan Vyoma Tech</h2>
@@ -88,15 +89,35 @@
         </div>
     </section>
 
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <h2>Ready to Build Your Project?</h2>
+            <p>Let's turn your idea into a powerful digital product that drives real results.</p>
+            <a href="/contact.html" class="btn btn-primary">Contact Now</a>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <img src="/images/avt-logo.svg" alt="Arohan Vyoma Tech" class="logo-img footer-logo-img">
-                    <p>Building digital solutions that drive business growth.</p>
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="/images/avt-logo.svg" alt="Arohan Vyoma Tech" class="logo-img footer-logo-img">
+                    </div>
+                    <p>We build scalable, high-performance websites and apps that help businesses grow.</p>
                 </div>
-
+                <div class="footer-section footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/services.html">Services</a></li>
+                        <li><a href="/portfolio.html">Portfolio</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <p>Email: infoarohanvyomatech@gmail.com</p>
@@ -106,7 +127,8 @@
                 <div class="footer-section">
                     <h4>Follow Us</h4>
                     <div class="social-links">
-                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="https://www.linkedin.com/company/arohan-vyoma-tech/" target="_blank"
+                            rel="noopener noreferrer" aria-label="LinkedIn">💼</a>
                         <a href="#" aria-label="Twitter">🐦</a>
                         <a href="#" aria-label="GitHub">💻</a>
                     </div>
@@ -114,9 +136,17 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Arohan Vyoma Tech. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/916303974785" target="_blank" rel="noopener noreferrer" class="whatsapp-float"
+        aria-label="Chat on WhatsApp">💬</a>
 
     <script type="module" src="/src/main.js"></script>
 </body>

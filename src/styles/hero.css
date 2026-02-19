@@ -1,5 +1,5 @@
 /* ===================================
-   Hero Section Styles
+   Hero Section Styles - Premium
    =================================== */
 
 .hero {
@@ -9,7 +9,41 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--color-bg-primary);
+    background: var(--gradient-hero);
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
+
+/* Animated gradient mesh background */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+    animation: meshFloat 15s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes meshFloat {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    33% {
+        transform: translate(2%, -2%) rotate(1deg);
+    }
+
+    66% {
+        transform: translate(-1%, 1%) rotate(-1deg);
+    }
 }
 
 .hero-canvas {
@@ -31,25 +65,27 @@
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: var(--spacing-md);
-    letter-spacing: -2px;
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
 }
 
 .hero-subtitle {
-    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     color: var(--color-text-secondary);
     margin-bottom: var(--spacing-lg);
-    font-weight: 300;
-    letter-spacing: 4px;
-    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-cta {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -57,7 +93,7 @@
 /* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
-    bottom: 3rem;
+    bottom: 2.5rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -112,4 +148,36 @@
     50% {
         background-position: 100% 50%;
     }
+}
+
+/* Portfolio Hero */
+.portfolio-hero {
+    padding: 10rem 0 4rem;
+    text-align: center;
+    background: var(--gradient-hero);
+    position: relative;
+}
+
+.portfolio-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.06) 0%, transparent 60%);
+}
+
+.portfolio-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.portfolio-hero-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 1.15rem;
+    position: relative;
 }

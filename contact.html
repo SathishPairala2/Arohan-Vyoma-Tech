@@ -6,10 +6,10 @@
     <link rel="icon" type="image/svg+xml" href="/images/avt-logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us - Arohan Vyoma Tech</title>
+    <meta name="description"
+        content="Get in touch with Arohan Vyoma Tech. Let's discuss your project and bring your ideas to life." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
 </head>
 
 <body>
@@ -26,6 +26,7 @@
                 <li><a href="/portfolio.html" class="nav-link">Portfolio</a></li>
                 <li><a href="/process.html" class="nav-link">Process</a></li>
                 <li><a href="/contact.html" class="nav-link active">Contact</a></li>
+                <li><a href="/contact.html" class="nav-cta">Hire Us 🚀</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -36,12 +37,13 @@
     </nav>
 
     <!-- Contact Section -->
-    <section class="section contact-section">
+    <section class="section contact-section" style="padding-top: 8rem;">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Get In Touch</h2>
                 <div class="title-underline"></div>
-                <p class="section-subtitle">Let's discuss your project and bring your ideas to life</p>
+                <p class="section-subtitle" style="margin-top: 1rem;">Let's discuss your project and bring your ideas to
+                    life</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
@@ -126,6 +128,10 @@
                                 <span>UI/UX Design</span>
                             </label>
                             <label class="checkbox-item">
+                                <input type="checkbox" name="service" value="Mobile App">
+                                <span>Mobile App</span>
+                            </label>
+                            <label class="checkbox-item">
                                 <input type="checkbox" name="service" value="Website Maintenance">
                                 <span>Website Maintenance</span>
                             </label>
@@ -181,11 +187,22 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <img src="/images/avt-logo.svg" alt="Arohan Vyoma Tech" class="logo-img footer-logo-img">
-                    <p>Building digital solutions that drive business growth.</p>
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="/images/avt-logo.svg" alt="Arohan Vyoma Tech" class="logo-img footer-logo-img">
+                    </div>
+                    <p>We build scalable, high-performance websites and apps that help businesses grow.</p>
                 </div>
-
+                <div class="footer-section footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about.html">About Us</a></li>
+                        <li><a href="/services.html">Services</a></li>
+                        <li><a href="/portfolio.html">Portfolio</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <p>Email: infoarohanvyomatech@gmail.com</p>
@@ -195,7 +212,8 @@
                 <div class="footer-section">
                     <h4>Follow Us</h4>
                     <div class="social-links">
-                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="https://www.linkedin.com/company/arohan-vyoma-tech/" target="_blank"
+                            rel="noopener noreferrer" aria-label="LinkedIn">💼</a>
                         <a href="#" aria-label="Twitter">🐦</a>
                         <a href="#" aria-label="GitHub">💻</a>
                     </div>
@@ -203,9 +221,17 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Arohan Vyoma Tech. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/916303974785" target="_blank" rel="noopener noreferrer" class="whatsapp-float"
+        aria-label="Chat on WhatsApp">💬</a>
 
     <script type="module" src="/src/main.js"></script>
 </body>
