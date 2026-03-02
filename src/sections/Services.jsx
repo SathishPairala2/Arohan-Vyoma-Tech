@@ -138,26 +138,45 @@ const ServiceModal = ({ service, onClose }) => {
 
     return (
         <AnimatePresence>
-            {/* Backdrop */}
+            {/* Backdrop – inline style guarantees it covers everything including navbar */}
             <motion.div
                 key="backdrop"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={onClose}
-                className="fixed inset-0 z-50 flex items-center justify-center p-4"
-                style={{ background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)' }}
+                style={{
+                    position: 'fixed',
+                    top: 0, left: 0, right: 0, bottom: 0,
+                    zIndex: 9999,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '24px',
+                    background: 'rgba(0,0,0,0.82)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                }}
             >
-                {/* Modal panel – stop propagation so clicking inside doesn't close */}
+                {/* Modal panel */}
                 <motion.div
                     key="panel"
-                    initial={{ opacity: 0, scale: 0.9, y: 40 }}
+                    initial={{ opacity: 0, scale: 0.92, y: 50 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: 40 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+                    exit={{ opacity: 0, scale: 0.92, y: 50 }}
+                    transition={{ type: 'spring', stiffness: 280, damping: 26 }}
                     onClick={(e) => e.stopPropagation()}
-                    className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/10 shadow-2xl"
-                    style={{ background: 'linear-gradient(145deg, #13131e, #1a1a2e)' }}
+                    style={{
+                        position: 'relative',
+                        width: '100%',
+                        maxWidth: '680px',
+                        maxHeight: '82vh',
+                        overflowY: 'auto',
+                        borderRadius: '24px',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        background: 'linear-gradient(145deg, #13131e, #1a1a2e)',
+                        boxShadow: '0 30px 80px rgba(0,0,0,0.6), 0 0 40px rgba(168,85,247,0.15)',
+                    }}
                 >
                     {/* Close button */}
                     <button
