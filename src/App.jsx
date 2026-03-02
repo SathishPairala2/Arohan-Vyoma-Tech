@@ -30,6 +30,7 @@ function ScrollToTop() {
 }
 
 function App() {
+    /*
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
@@ -54,11 +55,12 @@ function App() {
             lenis.destroy();
         };
     }, []);
+    */
 
     return (
         <div className="relative min-h-screen bg-black text-white selection:bg-primary selection:text-white overflow-x-hidden">
             <ScrollToTop />
-            <Preloader />
+            {/* <Preloader /> */}
             <MouseGlow />
             <FloatingOrbs />
 

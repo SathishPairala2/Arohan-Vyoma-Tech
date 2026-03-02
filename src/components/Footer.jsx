@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Linkedin, Twitter, Github, Instagram } from 'lucide-react';
+import { Linkedin, Facebook, Github, Instagram } from 'lucide-react';
 
 const Footer = () => {
     return (
         <footer className="bg-dark pt-20 pb-10 border-t border-white/5">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                    <div className="space-y-6">
+                    <div className="space-y-8">
                         <div className="flex items-center">
                             <img
                                 src="/images/avt-logo.svg"
@@ -53,7 +53,8 @@ const Footer = () => {
                         <div className="flex space-x-4">
                             {[
                                 { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/company/arohan-vyoma-tech/" },
-                                { icon: <Twitter size={20} />, href: "#" },
+                                { icon: <Facebook size={20} />, href: "#" },
+                                { icon: <Instagram size={20} />, href: "#" },
                                 { icon: <Github size={20} />, href: "#" }
                             ].map((social, i) => (
                                 <a
