@@ -27,6 +27,9 @@ const Footer = () => {
                             <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
                             <li><Link to="/services" className="hover:text-primary transition-colors">Services</Link></li>
                             <li><Link to="/portfolio" className="hover:text-primary transition-colors">Portfolio</Link></li>
+                            <li><Link to="/process" className="hover:text-primary transition-colors">Process</Link></li>
+                            <li><Link to="/pricing" className="hover:text-primary transition-colors">Pricing</Link></li>
+                            <li><Link to="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
                         </ul>
                     </div>
 
@@ -54,7 +57,7 @@ const Footer = () => {
                             {[
                                 { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/company/arohan-vyoma-tech/" },
                                 { icon: <Facebook size={20} />, href: "#" },
-                                { icon: <Instagram size={20} />, href: "#" },
+                                { icon: <Instagram size={20} />, href: "https://www.instagram.com/arohanvyomatech?igsh=bm15OTRoZHZydzli" },
                                 { icon: <Github size={20} />, href: "#" }
                             ].map((social, i) => (
                                 <a

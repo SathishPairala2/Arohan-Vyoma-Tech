@@ -6,9 +6,10 @@ import TiltCard from '../components/TiltCard';
 const services = [
     {
         title: 'Web Development',
-        description: 'Full-stack web applications using React, Next.js, Node.js, and modern frameworks. We build fast, responsive, and SEO-optimized websites.',
-        icon: <Code size={32} />,
+        description: 'Scalable full-stack applications & modern landing pages.',
+        icon: <Code size={24} />,
         color: 'from-blue-500 to-cyan-500',
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800',
         details: {
             overview: 'We craft high-performance web applications tailored to your business needs. From simple landing pages to complex enterprise platforms, our team delivers pixel-perfect, scalable solutions.',
             features: [
@@ -23,10 +24,11 @@ const services = [
         },
     },
     {
-        title: 'Mobile App Development',
-        description: 'Native iOS and Android apps, plus cross-platform solutions using React Native and Flutter. Intuitive experience with smooth performance.',
-        icon: <Smartphone size={32} />,
+        title: 'Mobile Apps',
+        description: 'Native & cross-platform mobile experiences for iOS and Android.',
+        icon: <Smartphone size={24} />,
         color: 'from-purple-500 to-pink-500',
+        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800',
         details: {
             overview: 'We build mobile applications that feel native on every platform. Our team delivers smooth user experiences whether you need iOS-only, Android-only, or cross-platform solutions.',
             features: [
@@ -42,9 +44,10 @@ const services = [
     },
     {
         title: 'UI/UX Design',
-        description: 'User-centered design that combines aesthetics with functionality. We create wireframes, prototypes, and high-fidelity designs.',
-        icon: <Layout size={32} />,
+        description: 'Aesthetics meets functionality. Stunning user-centered interfaces.',
+        icon: <Layout size={24} />,
         color: 'from-indigo-500 to-blue-500',
+        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800',
         details: {
             overview: 'Design that converts. We blend stunning visuals with deep UX research to create interfaces that delight users and drive business outcomes.',
             features: [
@@ -60,9 +63,10 @@ const services = [
     },
     {
         title: 'Cloud & DevOps',
-        description: 'Deploy and scale on AWS, Google Cloud, or Azure. We handle CI/CD pipelines, containerization with Docker, and Kubernetes.',
-        icon: <Cloud size={32} />,
+        description: 'Scalable cloud infrastructure & reliable deployment pipelines.',
+        icon: <Cloud size={24} />,
         color: 'from-cyan-500 to-teal-500',
+        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
         details: {
             overview: 'We build resilient cloud infrastructure that scales with your business. Our DevOps practices ensure reliable deployments, minimal downtime, and optimized cloud costs.',
             features: [
@@ -77,10 +81,11 @@ const services = [
         },
     },
     {
-        title: 'Maintenance & Support',
-        description: '24/7 monitoring, bug fixes, security updates, and performance optimization to keep your applications running smoothly.',
-        icon: <Bot size={32} />,
+        title: 'Maintenance',
+        description: '24/7 monitoring, security updates, and performance tuning.',
+        icon: <Bot size={24} />,
         color: 'from-orange-500 to-red-500',
+        image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800',
         details: {
             overview: 'We keep your applications healthy after launch. Our support plans include proactive monitoring, rapid bug resolution, and continuous improvements.',
             features: [
@@ -96,9 +101,10 @@ const services = [
     },
     {
         title: 'Custom Software',
-        description: 'Tailored enterprise software, booking systems, e-commerce platforms, and business automation tools that streamline operations.',
-        icon: <Cpu size={32} />,
+        description: 'Bespoke enterprise tools crafted for your specific workflows.',
+        icon: <Cpu size={24} />,
         color: 'from-green-500 to-emerald-500',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
         details: {
             overview: 'Off-the-shelf software rarely fits perfectly. We build bespoke software solutions designed around your exact workflows, giving your business a competitive edge.',
             features: [
@@ -113,10 +119,11 @@ const services = [
         },
     },
     {
-        title: 'Digital Marketing & SEO',
-        description: 'Boost your online presence with data-driven marketing strategies and SEO optimization to reach your target audience.',
-        icon: <Target size={32} />,
+        title: 'Digital Marketing',
+        description: 'Data-driven growth strategies and technical SEO optimization.',
+        icon: <Target size={24} />,
         color: 'from-red-500 to-orange-500',
+        image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800',
         details: {
             overview: 'Visibility drives growth. We combine technical SEO, content strategy, and performance marketing to bring the right customers to your digital doorstep.',
             features: [
@@ -274,36 +281,52 @@ const Services = () => {
                         </motion.p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {services.map((service, index) => (
                             <motion.div
                                 key={service.title}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
+                                transition={{ delay: index * 0.1, duration: 0.5 }}
+                                onClick={() => setActiveService(service)}
+                                className={`group relative h-72 rounded-3xl overflow-hidden cursor-pointer border border-white/5 shadow-xl ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
+                                    }`}
                             >
-                                <TiltCard>
-                                    <div className="glass-card group h-full flex flex-col">
-                                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} p-4 mb-6 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform`}>
+                                {/* Background Image */}
+                                <div className="absolute inset-0 w-full h-full">
+                                    <img
+                                        src={service.image}
+                                        alt={service.title}
+                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out brightness-75 group-hover:brightness-100"
+                                    />
+                                </div>
+
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500" />
+
+                                {/* Hover Glow Border */}
+                                <div className={`absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} style={{ WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', padding: '2px' }} />
+
+                                {/* Content */}
+                                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                                    <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${service.color} p-2 flex items-center justify-center text-white shadow-lg mb-4 opacity-80 group-hover:opacity-100 transition-opacity`}>
                                             {service.icon}
                                         </div>
-                                        <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors">
+                                        <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
                                             {service.title}
                                         </h3>
-                                        <p className="text-white/60 leading-relaxed flex-1">
+                                        <p className="text-white/60 text-sm line-clamp-2 pr-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                                             {service.description}
                                         </p>
-
-                                        <button
-                                            onClick={() => setActiveService(service)}
-                                            className="mt-8 flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200 cursor-pointer"
-                                        >
-                                            <span>Learn more</span>
-                                            <span>→</span>
-                                        </button>
                                     </div>
-                                </TiltCard>
+
+                                    {/* Action Icon */}
+                                    <div className="absolute bottom-6 right-6 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-500 delay-100">
+                                        <span className="text-xl font-light leading-none">+</span>
+                                    </div>
+                                </div>
                             </motion.div>
                         ))}
                     </div>

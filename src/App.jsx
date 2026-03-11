@@ -11,6 +11,10 @@ import Portfolio from './sections/Portfolio';
 import Process from './sections/Process';
 import Testimonials from './sections/Testimonials';
 import Contact from './sections/Contact';
+import FAQ from './sections/FAQ';
+import Pricing from './sections/Pricing';
+import StatsBar from './sections/StatsBar';
+import CTABanner from './sections/CTABanner';
 import Footer from './components/Footer';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
@@ -68,17 +72,25 @@ function App() {
 
             <main className="relative z-10">
                 <Routes>
-                    <Route path="/" element={<Hero />} />
+                    <Route path="/" element={
+                        <>
+                            <Hero />
+                            <StatsBar />
+                        </>
+                    } />
                     <Route path="/services" element={<div className="pt-20"><Services /></div>} />
                     <Route path="/about" element={<div className="pt-20"><About /></div>} />
                     <Route path="/portfolio" element={<div className="pt-20"><Portfolio /></div>} />
                     <Route path="/process" element={<div className="pt-20"><Process /></div>} />
+                    <Route path="/pricing" element={<div className="pt-20"><Pricing /></div>} />
+                    <Route path="/faq" element={<div className="pt-20"><FAQ /></div>} />
                     <Route path="/contact" element={<div className="pt-20"><Contact /></div>} />
                     <Route path="/privacy-policy" element={<div className="pt-20"><PrivacyPolicy /></div>} />
                     <Route path="/terms-of-service" element={<div className="pt-20"><TermsOfService /></div>} />
                 </Routes>
             </main>
 
+            <CTABanner />
             <Footer />
             <WhatsAppButton />
         </div>
