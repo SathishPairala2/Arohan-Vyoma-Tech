@@ -1,92 +1,221 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Search, Zap, Code2, Rocket } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const steps = [
     {
+        num: '01',
         title: 'Discovery & Planning',
-        description: 'We understand your requirements, goals, and target audience to create a comprehensive project roadmap.',
-        icon: <Search size={28} />,
+        description: 'We understand your requirements, goals, and target audience to create a comprehensive project roadmap that sets the foundation for success.',
     },
     {
+        num: '02',
         title: 'Design & Prototyping',
-        description: 'Creating wireframes and interactive prototypes to visualize the final product before development begins.',
-        icon: <Zap size={28} />,
+        description: 'Creating wireframes and interactive prototypes to visualize the final product before a single line of code is written.',
     },
     {
+        num: '03',
         title: 'Development',
-        description: 'Building your solution with clean, scalable code using the latest technologies and best practices.',
-        icon: <Code2 size={28} />,
+        description: 'Building your solution with clean, scalable code using the latest technologies and industry best practices.',
     },
     {
-        title: 'Testing & QA',
+        num: '04',
+        title: 'Testing & Quality Assurance',
         description: 'Rigorous testing to ensure quality, performance, and security across all devices and platforms.',
-        icon: <Search size={28} />,
     },
     {
+        num: '05',
         title: 'Deployment',
-        description: 'Launching your application with proper setup, configuration, and optimization for production.',
-        icon: <Rocket size={28} />,
+        description: 'Launching your application with proper setup, configuration, and optimization for production environments.',
     },
     {
-        title: 'Support & Maintenance',
-        description: 'Ongoing support, updates, and improvements to keep your application running at peak performance.',
-        icon: <Zap size={28} />,
+        num: '06',
+        title: 'Support & Growth',
+        description: 'Ongoing support, updates, and improvements to keep your application running at peak performance long after launch.',
     },
 ];
 
 const Process = () => {
+    const [openIndex, setOpenIndex] = useState(null);
+
     return (
-        <section id="process" className="section py-24 relative">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-20">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
+        <section
+            id="process"
+            style={{
+                background: 'var(--color-bg-light)',
+                padding: 'var(--spacing-xl) 0',
+            }}
+        >
+            <div className="container">
+                {/* Header */}
+                <div style={{ marginBottom: '4rem' }}>
+                    <motion.span
+                        initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-5xl font-bold mb-4"
+                        style={{
+                            display: 'inline-block',
+                            fontFamily: 'var(--font-heading)',
+                            fontSize: '0.7rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.2em',
+                            textTransform: 'uppercase',
+                            color: 'var(--color-accent)',
+                            marginBottom: '1rem',
+                        }}
                     >
-                        Our <span className="glow-text">Process</span>
-                    </motion.h2>
-                    <p className="text-white/60">How we turn your vision into a successful reality.</p>
-                </div>
+                        How We Work
+                    </motion.span>
 
-                <div className="relative">
-                    {/* Timeline centered line - desktop only */}
-                    <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-primary via-secondary to-transparent hidden lg:block"></div>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '3rem',
+                        alignItems: 'flex-end',
+                    }}>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                            style={{
+                                fontFamily: 'var(--font-heading)',
+                                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                                fontWeight: 900,
+                                color: 'var(--color-text-dark)',
+                                lineHeight: 1.1,
+                                margin: 0,
+                            }}
+                        >
+                            Your Brand's Secret Weapon —<br />
+                            <span style={{ color: 'var(--color-accent)' }}>The Right Process.</span>
+                        </motion.h2>
 
-                    <div className="space-y-12 lg:space-y-0">
-                        {steps.map((step, index) => (
-                            <div key={step.title} className={`flex flex-col lg:flex-row items-center justify-between lg:h-80 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
-                                {/* Content Side */}
-                                <motion.div
-                                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.6 }}
-                                    className="lg:w-[45%] glass-card text-center lg:text-left p-10"
-                                >
-                                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${index % 2 === 0 ? 'from-primary to-secondary' : 'from-secondary to-accent'} flex items-center justify-center mb-6 mx-auto lg:mx-0 shadow-lg`}>
-                                        {step.icon}
-                                    </div>
-                                    <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
-                                    <p className="text-white/60 leading-relaxed">
-                                        {step.description}
-                                    </p>
-                                </motion.div>
-
-                                {/* Center Circle - desktop only */}
-                                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-dark border-4 border-primary z-10 items-center justify-center">
-                                    <span className="text-xs font-bold">{index + 1}</span>
-                                </div>
-
-                                {/* Empty Side for layout - desktop only */}
-                                <div className="hidden lg:block lg:w-[45%]"></div>
-                            </div>
-                        ))}
+                        <motion.p
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            style={{
+                                color: 'var(--color-text-muted-dark)',
+                                fontSize: '0.95rem',
+                                lineHeight: 1.8,
+                                margin: 0,
+                            }}
+                        >
+                            We follow a structured approach to every project — from the first
+                            discovery call to post-launch support — ensuring clarity and quality
+                            at every step.
+                        </motion.p>
                     </div>
                 </div>
+
+                {/* Steps accordion */}
+                <div style={{ borderTop: '1px solid rgba(0,0,0,0.08)' }}>
+                    {steps.map((step, i) => {
+                        const isOpen = openIndex === i;
+                        return (
+                            <motion.div
+                                key={step.num}
+                                initial={{ opacity: 0, y: 16 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.06 }}
+                                style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}
+                            >
+                                <button
+                                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                                    style={{
+                                        width: '100%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'space-between',
+                                        padding: '1.75rem 0',
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        textAlign: 'left',
+                                        gap: '2rem',
+                                    }}
+                                >
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1 }}>
+                                        <span style={{
+                                            fontFamily: 'var(--font-heading)',
+                                            fontSize: '0.72rem',
+                                            fontWeight: 700,
+                                            color: 'var(--color-accent)',
+                                            minWidth: '1.8rem',
+                                            letterSpacing: '0.05em',
+                                        }}>
+                                            {step.num}
+                                        </span>
+                                        <h3 style={{
+                                            fontFamily: 'var(--font-heading)',
+                                            fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+                                            fontWeight: 800,
+                                            color: isOpen ? 'var(--color-accent)' : 'var(--color-text-dark)',
+                                            margin: 0,
+                                            transition: 'color 0.25s ease',
+                                        }}>
+                                            {step.title}
+                                        </h3>
+                                    </div>
+
+                                    {/* Toggle icon */}
+                                    <div style={{
+                                        width: 36,
+                                        height: 36,
+                                        borderRadius: '50%',
+                                        border: '1px solid rgba(0,0,0,0.15)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0,
+                                        background: isOpen ? 'var(--color-text-dark)' : 'transparent',
+                                        color: isOpen ? '#fff' : 'var(--color-text-dark)',
+                                        fontSize: '1.1rem',
+                                        transition: 'all 0.25s ease',
+                                        transform: isOpen ? 'rotate(45deg)' : 'none',
+                                    }}>
+                                        +
+                                    </div>
+                                </button>
+
+                                <AnimatePresence initial={false}>
+                                    {isOpen && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: 'auto', opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
+                                            style={{ overflow: 'hidden' }}
+                                        >
+                                            <p style={{
+                                                color: 'var(--color-text-muted-dark)',
+                                                fontSize: '1rem',
+                                                lineHeight: 1.8,
+                                                paddingBottom: '1.75rem',
+                                                paddingLeft: '3.3rem',
+                                                margin: 0,
+                                                maxWidth: '640px',
+                                            }}>
+                                                {step.description}
+                                            </p>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </motion.div>
+                        );
+                    })}
+                </div>
             </div>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    #process .container > div:nth-child(1) > div {
+                        grid-template-columns: 1fr !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

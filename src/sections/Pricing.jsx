@@ -1,18 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CheckCircle, Zap, Star, Building2 } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 const plans = [
     {
         name: 'Starter',
-        icon: <Zap size={24} />,
         price: '₹15,000',
-        period: 'project',
+        period: 'per project',
         tagline: 'Perfect for small businesses & landing pages',
-        color: 'from-cyan-500 to-blue-500',
-        borderColor: 'border-cyan-500/20',
-        glowColor: 'rgba(6,182,212,0.2)',
         features: [
             'Responsive Landing Page or Website',
             'Up to 5 Pages',
@@ -26,13 +22,9 @@ const plans = [
     },
     {
         name: 'Pro',
-        icon: <Star size={24} />,
         price: '₹45,000',
-        period: 'project',
+        period: 'per project',
         tagline: 'For growing businesses & full-stack apps',
-        color: 'from-primary to-secondary',
-        borderColor: 'border-primary/40',
-        glowColor: 'rgba(168,85,247,0.3)',
         features: [
             'Full-Stack Web Application',
             'Custom Admin Dashboard',
@@ -47,13 +39,9 @@ const plans = [
     },
     {
         name: 'Enterprise',
-        icon: <Building2 size={24} />,
         price: 'Custom',
-        period: 'quote',
+        period: 'per quote',
         tagline: 'Tailored solutions for complex needs',
-        color: 'from-orange-500 to-red-500',
-        borderColor: 'border-orange-500/20',
-        glowColor: 'rgba(249,115,22,0.2)',
         features: [
             'Custom Software / ERP / Platform',
             'Mobile App (iOS & Android)',
@@ -70,110 +58,266 @@ const plans = [
 
 const Pricing = () => {
     return (
-        <section id="pricing" className="section py-24 bg-dark-surface relative overflow-hidden">
-            {/* Background glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
-
-            <div className="container mx-auto px-6 relative z-10">
+        <section
+            id="pricing"
+            style={{
+                background: 'var(--color-bg-light)',
+                padding: 'var(--spacing-xl) 0',
+            }}
+        >
+            <div className="container">
                 {/* Header */}
-                <div className="text-center mb-20">
+                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <motion.span
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-primary font-bold tracking-widest uppercase text-sm mb-4 inline-block"
+                        style={{
+                            display: 'inline-block',
+                            fontFamily: 'var(--font-heading)',
+                            fontSize: '0.7rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.2em',
+                            textTransform: 'uppercase',
+                            color: 'var(--color-accent)',
+                            marginBottom: '1rem',
+                        }}
                     >
                         Transparent Pricing
                     </motion.span>
+
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl font-bold mb-4"
+                        style={{
+                            fontFamily: 'var(--font-heading)',
+                            fontSize: 'clamp(2rem, 4vw, 3.2rem)',
+                            fontWeight: 900,
+                            color: 'var(--color-text-dark)',
+                            lineHeight: 1.1,
+                            marginBottom: '1rem',
+                        }}
                     >
-                        Choose Your <span className="glow-text">Plan</span>
+                        Choose Your Plan
                     </motion.h2>
+
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-white/50 max-w-xl mx-auto text-lg"
+                        style={{
+                            color: 'var(--color-text-muted-dark)',
+                            maxWidth: '480px',
+                            margin: '0 auto',
+                            fontSize: '1rem',
+                            lineHeight: 1.75,
+                        }}
                     >
                         No hidden fees. No surprises. Just quality work that delivers results.
                     </motion.p>
                 </div>
 
                 {/* Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <div
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(3, 1fr)',
+                        gap: '1.5rem',
+                        alignItems: 'stretch',
+                    }}
+                >
                     {plans.map((plan, i) => (
                         <motion.div
                             key={plan.name}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 28 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: i * 0.15 }}
-                            className="relative"
+                            transition={{ delay: i * 0.12 }}
+                            style={{ position: 'relative' }}
                         >
                             {plan.popular && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
-                                    <span className="px-5 py-1.5 rounded-full text-xs font-bold text-white"
-                                        style={{ background: 'linear-gradient(135deg, #a855f7, #3b82f6)' }}>
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '-14px',
+                                    left: '50%',
+                                    transform: 'translateX(-50%)',
+                                    zIndex: 10,
+                                }}>
+                                    <span style={{
+                                        background: 'var(--color-accent)',
+                                        color: '#fff',
+                                        fontFamily: 'var(--font-heading)',
+                                        fontSize: '0.68rem',
+                                        fontWeight: 800,
+                                        letterSpacing: '0.08em',
+                                        padding: '0.35rem 1rem',
+                                        borderRadius: '100px',
+                                        textTransform: 'uppercase',
+                                        whiteSpace: 'nowrap',
+                                        boxShadow: 'var(--shadow-btn)',
+                                    }}>
                                         ⚡ Most Popular
                                     </span>
                                 </div>
                             )}
 
                             <div
-                                className={`h-full flex flex-col rounded-3xl border ${plan.borderColor} bg-white/3 backdrop-blur-sm p-8 transition-all duration-300 hover:-translate-y-2`}
                                 style={{
-                                    background: plan.popular
-                                        ? 'linear-gradient(145deg, rgba(168,85,247,0.08), rgba(59,130,246,0.08))'
-                                        : 'rgba(255,255,255,0.03)',
+                                    height: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    background: plan.popular ? 'var(--color-text-dark)' : '#ffffff',
+                                    border: plan.popular
+                                        ? '2px solid var(--color-text-dark)'
+                                        : '1px solid rgba(0,0,0,0.09)',
+                                    borderRadius: '20px',
+                                    padding: '2.5rem 2rem',
                                     boxShadow: plan.popular
-                                        ? `0 0 60px ${plan.glowColor}, inset 0 0 40px rgba(168,85,247,0.03)`
-                                        : `0 0 40px ${plan.glowColor}`,
+                                        ? '0 12px 40px rgba(0,0,0,0.2)'
+                                        : 'var(--shadow-card-light)',
+                                    transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+                                }}
+                                onMouseEnter={(e) => {
+                                    if (!plan.popular) {
+                                        e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)';
+                                        e.currentTarget.style.transform = 'translateY(-4px)';
+                                    }
+                                }}
+                                onMouseLeave={(e) => {
+                                    if (!plan.popular) {
+                                        e.currentTarget.style.boxShadow = 'var(--shadow-card-light)';
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                    }
                                 }}
                             >
-                                {/* Icon + Name */}
-                                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${plan.color} flex items-center justify-center text-white mb-6 shadow-lg`}>
-                                    {plan.icon}
+                                {/* Plan name */}
+                                <div style={{ marginBottom: '1.5rem' }}>
+                                    <h3 style={{
+                                        fontFamily: 'var(--font-heading)',
+                                        fontSize: '1rem',
+                                        fontWeight: 800,
+                                        color: plan.popular ? 'rgba(255,255,255,0.6)' : 'var(--color-text-muted-dark)',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.12em',
+                                        marginBottom: '0.4rem',
+                                    }}>
+                                        {plan.name}
+                                    </h3>
+                                    <p style={{
+                                        color: plan.popular ? 'rgba(255,255,255,0.5)' : 'var(--color-text-muted-dark)',
+                                        fontSize: '0.85rem',
+                                        margin: 0,
+                                        lineHeight: 1.5,
+                                    }}>
+                                        {plan.tagline}
+                                    </p>
                                 </div>
-                                <h3 className="text-2xl font-bold mb-1">{plan.name}</h3>
-                                <p className="text-white/40 text-sm mb-6">{plan.tagline}</p>
 
                                 {/* Price */}
-                                <div className="mb-8 pb-8 border-b border-white/10">
-                                    <span className="text-5xl font-extrabold">{plan.price}</span>
+                                <div style={{
+                                    borderTop: `1px solid ${plan.popular ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`,
+                                    borderBottom: `1px solid ${plan.popular ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`,
+                                    padding: '1.5rem 0',
+                                    marginBottom: '1.75rem',
+                                }}>
+                                    <span style={{
+                                        fontFamily: 'var(--font-heading)',
+                                        fontSize: 'clamp(2.2rem, 4vw, 3rem)',
+                                        fontWeight: 900,
+                                        color: plan.popular ? '#fff' : 'var(--color-text-dark)',
+                                        lineHeight: 1,
+                                    }}>
+                                        {plan.price}
+                                    </span>
                                     {plan.price !== 'Custom' && (
-                                        <span className="text-white/40 text-sm ml-2">/ {plan.period}</span>
+                                        <span style={{
+                                            fontFamily: 'var(--font-body)',
+                                            fontSize: '0.82rem',
+                                            color: plan.popular ? 'rgba(255,255,255,0.4)' : 'var(--color-text-muted-dark)',
+                                            marginLeft: '0.5rem',
+                                        }}>
+                                            / {plan.period}
+                                        </span>
                                     )}
                                 </div>
 
                                 {/* Features */}
-                                <ul className="space-y-3 flex-1 mb-10">
+                                <ul style={{
+                                    listStyle: 'none',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '0.75rem',
+                                    flex: 1,
+                                    marginBottom: '2rem',
+                                }}>
                                     {plan.features.map((feat) => (
-                                        <li key={feat} className="flex items-start gap-3 text-white/70 text-sm">
-                                            <CheckCircle size={16} className="mt-0.5 flex-shrink-0 text-primary" />
+                                        <li key={feat} style={{
+                                            display: 'flex',
+                                            alignItems: 'flex-start',
+                                            gap: '0.7rem',
+                                            fontSize: '0.88rem',
+                                            color: plan.popular ? 'rgba(255,255,255,0.75)' : 'var(--color-text-mid)',
+                                            lineHeight: 1.5,
+                                        }}>
+                                            <CheckCircle
+                                                size={15}
+                                                style={{
+                                                    color: plan.popular ? 'var(--color-accent)' : 'var(--color-accent)',
+                                                    marginTop: 2,
+                                                    flexShrink: 0,
+                                                }}
+                                            />
                                             {feat}
                                         </li>
                                     ))}
                                 </ul>
 
-                                {/* CTA Button */}
+                                {/* CTA */}
                                 <Link
                                     to="/contact"
-                                    className={`block text-center py-3.5 px-6 rounded-full font-bold text-sm transition-all duration-300 ${plan.popular
-                                            ? 'text-white hover:opacity-90 hover:scale-105 active:scale-95'
-                                            : 'border border-white/20 text-white hover:border-white/50 hover:bg-white/5'
-                                        }`}
-                                    style={plan.popular ? {
-                                        background: 'linear-gradient(135deg, #a855f7, #3b82f6)',
-                                        boxShadow: '0 0 30px rgba(168,85,247,0.4)',
-                                    } : {}}
+                                    style={{
+                                        display: 'block',
+                                        textAlign: 'center',
+                                        padding: '0.9rem 1.5rem',
+                                        borderRadius: '100px',
+                                        fontFamily: 'var(--font-heading)',
+                                        fontSize: '0.88rem',
+                                        fontWeight: 800,
+                                        textDecoration: 'none',
+                                        transition: 'all 0.25s ease',
+                                        ...(plan.popular ? {
+                                            background: 'var(--color-accent)',
+                                            color: '#fff',
+                                            boxShadow: 'var(--shadow-btn)',
+                                        } : {
+                                            background: 'transparent',
+                                            color: 'var(--color-text-dark)',
+                                            border: '2px solid var(--color-text-dark)',
+                                        }),
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        if (plan.popular) {
+                                            e.currentTarget.style.background = 'var(--color-accent-hover)';
+                                            e.currentTarget.style.transform = 'translateY(-2px)';
+                                        } else {
+                                            e.currentTarget.style.background = 'var(--color-text-dark)';
+                                            e.currentTarget.style.color = '#fff';
+                                        }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        if (plan.popular) {
+                                            e.currentTarget.style.background = 'var(--color-accent)';
+                                            e.currentTarget.style.transform = 'translateY(0)';
+                                        } else {
+                                            e.currentTarget.style.background = 'transparent';
+                                            e.currentTarget.style.color = 'var(--color-text-dark)';
+                                        }
+                                    }}
                                 >
-                                    {plan.cta}
+                                    {plan.cta} →
                                 </Link>
                             </div>
                         </motion.div>
@@ -185,12 +329,30 @@ const Pricing = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="text-center text-white/30 text-sm mt-12"
+                    style={{
+                        textAlign: 'center',
+                        color: 'var(--color-text-muted-dark)',
+                        fontSize: '0.82rem',
+                        marginTop: '2.5rem',
+                    }}
                 >
-                    All prices are starting estimates. Final quote based on project scope. {' '}
-                    <Link to="/contact" className="text-primary hover:underline">Contact us</Link> for a custom proposal.
+                    All prices are starting estimates. Final quote based on project scope.{' '}
+                    <Link to="/contact" style={{ color: 'var(--color-accent)', fontWeight: 600 }}>
+                        Contact us
+                    </Link>{' '}
+                    for a custom proposal.
                 </motion.p>
             </div>
+
+            <style>{`
+                @media (max-width: 900px) {
+                    #pricing .container > div:nth-child(2) {
+                        grid-template-columns: 1fr !important;
+                        max-width: 480px;
+                        margin: 0 auto;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

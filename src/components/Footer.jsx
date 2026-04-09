@@ -1,87 +1,167 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, Facebook, Github, Instagram } from 'lucide-react';
 
 const Footer = () => {
+    const year = new Date().getFullYear();
+
+    const links = {
+        Services: [
+            { label: 'Web Development', href: '/services' },
+            { label: 'Mobile Apps',     href: '/services' },
+            { label: 'UI/UX Design',    href: '/services' },
+            { label: 'Cloud & DevOps',  href: '/services' },
+            { label: 'Custom Software', href: '/services' },
+        ],
+        Company: [
+            { label: 'About Us',   href: '/about' },
+            { label: 'Portfolio',  href: '/portfolio' },
+            { label: 'Our Process',href: '/process' },
+            { label: 'FAQ',        href: '/faq' },
+        ],
+        Legal: [
+            { label: 'Privacy Policy',   href: '/privacy-policy' },
+            { label: 'Terms of Service', href: '/terms-of-service' },
+            { label: 'Contact Us',       href: '/contact' },
+        ],
+    };
+
+    const social = [
+        {
+            label: 'Instagram',
+            href: 'https://www.instagram.com/arohanvyomatech?igsh=bm15OTRoZHZydzli',
+            icon: '📷',
+        },
+        {
+            label: 'LinkedIn',
+            href: '#',
+            icon: 'in',
+        },
+        {
+            label: 'WhatsApp',
+            href: 'https://wa.me/917330763818',
+            icon: '✉',
+        },
+    ];
+
     return (
-        <footer className="bg-dark pt-20 pb-10 border-t border-white/5">
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                    <div className="space-y-8">
-                        <div className="flex items-center">
-                            <img
-                                src="/images/avt-logo.svg"
-                                alt="Arohan Vyoma Tech"
-                                className="h-14 w-auto brightness-110"
-                            />
-                        </div>
-                        <p className="text-white/40 leading-relaxed text-sm max-w-xs">
-                            We build scalable, high-performance websites and apps that help businesses grow.
-                            From idea to deployment — your trusted digital partner.
+        <footer className="footer">
+            <div className="container">
+                <div className="footer-content">
+                    {/* Brand Column */}
+                    <div className="footer-section footer-brand">
+                        <img
+                            src="/images/avt-logo.svg"
+                            alt="Arohan Vyoma Tech"
+                            className="footer-logo-img"
+                            onError={(e) => {
+                                e.target.style.display = 'none';
+                                e.target.nextSibling.style.display = 'block';
+                            }}
+                        />
+                        <span
+                            style={{
+                                display: 'none',
+                                fontFamily: 'var(--font-heading)',
+                                fontWeight: 900,
+                                fontSize: '1.25rem',
+                                color: '#fff',
+                                letterSpacing: '-0.01em',
+                            }}
+                        >
+                            AROHAN<span style={{ color: 'var(--color-accent)' }}>.</span>
+                        </span>
+
+                        <p>
+                            A passionate team of developers and designers dedicated to crafting
+                            exceptional digital solutions in Hyderabad. We transform ideas into
+                            powerful applications.
                         </p>
-                    </div>
 
-                    <div className="flex flex-col items-start">
-                        <h4 className="text-lg font-bold mb-8">Quick Links</h4>
-                        <ul className="space-y-4 text-white/40 text-sm">
-                            <li><Link to="/" className="hover:text-primary transition-colors">Home</Link></li>
-                            <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-                            <li><Link to="/services" className="hover:text-primary transition-colors">Services</Link></li>
-                            <li><Link to="/portfolio" className="hover:text-primary transition-colors">Portfolio</Link></li>
-                            <li><Link to="/process" className="hover:text-primary transition-colors">Process</Link></li>
-                            <li><Link to="/pricing" className="hover:text-primary transition-colors">Pricing</Link></li>
-                            <li><Link to="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
-                        </ul>
-                    </div>
-
-                    <div className="flex flex-col items-start min-w-0">
-                        <h4 className="text-lg font-bold mb-8">Contact Us</h4>
-                        <ul className="space-y-4 text-white/40 text-sm w-full">
-                            <li className="flex flex-col gap-1">
-                                <span className="text-primary font-semibold">Email:</span>
-                                <span className="break-all">infoarohanvyomatech@gmail.com</span>
-                            </li>
-                            <li className="flex flex-col gap-1">
-                                <span className="text-primary font-semibold">Phone:</span>
-                                <span>+91 6303974785</span>
-                            </li>
-                            <li className="flex flex-col gap-1">
-                                <span className="text-primary font-semibold">Location:</span>
-                                <span>Hyderabad, Telangana</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="text-lg font-bold mb-8">Stay Connected</h4>
-                        <div className="flex space-x-4">
-                            {[
-                                { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/company/arohan-vyoma-tech/" },
-                                { icon: <Facebook size={20} />, href: "#" },
-                                { icon: <Instagram size={20} />, href: "https://www.instagram.com/arohanvyomatech?igsh=bm15OTRoZHZydzli" },
-                                { icon: <Github size={20} />, href: "#" }
-                            ].map((social, i) => (
+                        <div className="social-links" style={{ marginTop: '1.25rem' }}>
+                            {social.map((s) => (
                                 <a
-                                    key={i}
-                                    href={social.href}
+                                    key={s.label}
+                                    href={s.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-12 h-12 glass rounded-xl flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all duration-300 border border-white/5"
+                                    aria-label={s.label}
+                                    title={s.label}
+                                    style={{ fontSize: '0.85rem', fontWeight: 700, fontFamily: 'var(--font-heading)' }}
                                 >
-                                    {social.icon}
+                                    {s.icon}
                                 </a>
                             ))}
                         </div>
                     </div>
+
+                    {/* Services Links */}
+                    <div className="footer-section footer-links">
+                        <h4>Services</h4>
+                        <ul>
+                            {links.Services.map((l) => (
+                                <li key={l.label}>
+                                    <Link to={l.href}>{l.label}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Company Links */}
+                    <div className="footer-section footer-links">
+                        <h4>Company</h4>
+                        <ul>
+                            {links.Company.map((l) => (
+                                <li key={l.label}>
+                                    <Link to={l.href}>{l.label}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Contact / Legal */}
+                    <div className="footer-section footer-links">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li>
+                                <a href="mailto:info@arohanvyoma.com">
+                                    infoarohanvyomatech@gmail.com
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tel:+917330763818">
+                                    +91 63039 74785
+                                </a>
+                            </li>
+                            <li style={{ marginTop: '0.5rem' }}>
+                                <a
+                                    href="https://maps.google.com/?q=Hyderabad"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Hyderabad, Telangana
+                                </a>
+                            </li>
+                        </ul>
+
+                        <h4 style={{ marginTop: '1.5rem' }}>Legal</h4>
+                        <ul>
+                            {links.Legal.map((l) => (
+                                <li key={l.label}>
+                                    <Link to={l.href}>{l.label}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
 
-                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-sm text-white/30 text-center md:text-left">
-                        © 2026 Arohan Vyoma Tech. All rights reserved.
+                {/* Bottom bar */}
+                <div className="footer-bottom">
+                    <p>
+                        © {year} Arohan Vyoma Tech. All rights reserved.
                     </p>
-                    <div className="flex space-x-8">
-                        <Link to="/privacy-policy" className="text-sm text-white/30 hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link to="/terms-of-service" className="text-sm text-white/30 hover:text-white transition-colors">Terms of Service</Link>
-                    </div>
+                    <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.78rem' }}>
+                        Crafted with ❤️ in Hyderabad, India
+                    </p>
                 </div>
             </div>
         </footer>

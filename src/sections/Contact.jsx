@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Check } from 'lucide-react';
+import { Mail, Phone, MapPin, Check, Send } from 'lucide-react';
+
+const serviceOptions = [
+    'Website Development',
+    'Web Application',
+    'E-commerce Website',
+    'Mobile App',
+    'UI/UX Design',
+    'Digital Marketing',
+    'Cloud & DevOps',
+    'Other',
+];
 
 const Contact = () => {
     const [status, setStatus] = useState('');
@@ -9,12 +20,11 @@ const Contact = () => {
         email: '',
         phone: '',
         company: '',
-        website: '',
         services: [],
         budget: '',
         timeline: '',
         message: '',
-        agreement: false
+        agreement: false,
     });
 
     const handleChange = (e) => {
@@ -22,291 +32,443 @@ const Contact = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleCheckboxChange = (service) => {
-        setFormData(prev => {
-            const services = prev.services.includes(service)
+    const handleServiceToggle = (service) => {
+        setFormData(prev => ({
+            ...prev,
+            services: prev.services.includes(service)
                 ? prev.services.filter(s => s !== service)
-                : [...prev.services, service];
-            return { ...prev, services };
-        });
+                : [...prev.services, service],
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('sending');
-
-        // Simulate API call
-        console.log('Form Data Submitted:', formData);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
+        await new Promise(r => setTimeout(r, 1500));
         setStatus('success');
         setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            company: '',
-            website: '',
-            services: [],
-            budget: '',
-            timeline: '',
-            message: '',
-            agreement: false
+            name: '', email: '', phone: '', company: '',
+            services: [], budget: '', timeline: '', message: '', agreement: false,
         });
-
         setTimeout(() => setStatus(''), 5000);
     };
 
-    const serviceOptions = [
-        'Website Development',
-        'Web Application',
-        'E-commerce Website',
-        'Portfolio Website',
-        'UI/UX Design',
-        'Mobile App',
-        'Website Maintenance',
-        'Other'
-    ];
+    // ── shared input style ────────────────────────────────────────────────────
+    const inputStyle = {
+        width: '100%',
+        padding: '0.9rem 1.2rem',
+        border: '1px solid rgba(0,0,0,0.14)',
+        borderRadius: '12px',
+        background: '#ffffff',
+        fontFamily: 'var(--font-body)',
+        fontSize: '0.92rem',
+        color: 'var(--color-text-dark)',
+        outline: 'none',
+        transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+        boxSizing: 'border-box',
+    };
+
+    const labelStyle = {
+        display: 'block',
+        fontFamily: 'var(--font-heading)',
+        fontSize: '0.68rem',
+        fontWeight: 700,
+        letterSpacing: '0.15em',
+        textTransform: 'uppercase',
+        color: 'var(--color-text-muted-dark)',
+        marginBottom: '0.5rem',
+    };
+
+    const handleFocus = (e) => {
+        e.target.style.borderColor = 'var(--color-accent)';
+        e.target.style.boxShadow = '0 0 0 3px rgba(104,63,191,0.1)';
+    };
+    const handleBlur = (e) => {
+        e.target.style.borderColor = 'rgba(0,0,0,0.14)';
+        e.target.style.boxShadow = 'none';
+    };
 
     return (
-        <section id="contact" className="section py-24 relative overflow-hidden">
-            <div className="container mx-auto px-6">
-                <div className="flex flex-col lg:flex-row gap-16">
-                    {/* Info Side */}
+        <section
+            id="contact"
+            style={{
+                background: 'var(--color-bg-light)',
+                padding: 'var(--spacing-xl) 0',
+            }}
+        >
+            <div className="container">
+                <div
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 2fr',
+                        gap: '5rem',
+                        alignItems: 'flex-start',
+                    }}
+                >
+                    {/* ── Left: Info ──────────────────────────────────────── */}
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="lg:w-1/3"
+                        style={{ position: 'sticky', top: '100px' }}
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                            Let's <span className="glow-text">Connect</span>
+                        <span style={{
+                            display: 'inline-block',
+                            fontFamily: 'var(--font-heading)',
+                            fontSize: '0.7rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.2em',
+                            textTransform: 'uppercase',
+                            color: 'var(--color-accent)',
+                            marginBottom: '1rem',
+                        }}>
+                            Get In Touch
+                        </span>
+
+                        <h2 style={{
+                            fontFamily: 'var(--font-heading)',
+                            fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
+                            fontWeight: 900,
+                            color: 'var(--color-text-dark)',
+                            lineHeight: 1.1,
+                            marginBottom: '1.25rem',
+                        }}>
+                            Let's Build<br />Something<br />
+                            <span style={{ color: 'var(--color-accent)' }}>Extraordinary</span>
                         </h2>
-                        <p className="text-white/60 mb-12 text-lg">
-                            Have a project in mind? Let's discuss how we can help you build something extraordinary.
+
+                        <p style={{
+                            color: 'var(--color-text-muted-dark)',
+                            fontSize: '0.92rem',
+                            lineHeight: 1.8,
+                            marginBottom: '2.5rem',
+                        }}>
+                            Have a project in mind? Let's discuss how we can help you turn
+                            your vision into a high-performance digital product.
                         </p>
 
-                        <div className="space-y-8">
-                            <div className="flex items-center space-x-6 group">
-                                <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                                    <Mail size={24} />
-                                </div>
-                                <div>
-                                    <p className="text-xs text-white/40 uppercase tracking-widest mb-1 font-semibold">Email Us</p>
-                                    <p className="text-lg font-medium group-hover:text-primary transition-colors cursor-pointer">infoarohanvyomatech@gmail.com</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center space-x-6 group">
-                                <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
-                                    <Phone size={24} />
-                                </div>
-                                <div>
-                                    <p className="text-xs text-white/40 uppercase tracking-widest mb-1 font-semibold">Call Us</p>
-                                    <p className="text-lg font-medium group-hover:text-secondary transition-colors cursor-pointer">+91 6303974785</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center space-x-6 group">
-                                <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
-                                    <MapPin size={24} />
-                                </div>
-                                <div>
-                                    <p className="text-xs text-white/40 uppercase tracking-widest mb-1 font-semibold">Visit Us</p>
-                                    <p className="text-lg font-medium group-hover:text-accent transition-colors">Hyderabad, Telangana</p>
-                                </div>
-                            </div>
+                        {/* Contact Details */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                            {[
+                                { icon: <Mail size={18} />, label: 'Email', value: 'infoarohanvyomatech@gmail.com', href: 'mailto:infoarohanvyomatech@gmail.com' },
+                                { icon: <Phone size={18} />, label: 'Phone', value: '+91 6303 974 785', href: 'tel:+916303974785' },
+                                { icon: <MapPin size={18} />, label: 'Location', value: 'Hyderabad, Telangana, India', href: 'https://maps.google.com/?q=Hyderabad' },
+                            ].map((item) => (
+                                <a
+                                    key={item.label}
+                                    href={item.href}
+                                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'flex-start',
+                                        gap: '1rem',
+                                        textDecoration: 'none',
+                                        color: 'inherit',
+                                    }}
+                                >
+                                    <div style={{
+                                        width: 40, height: 40,
+                                        borderRadius: '10px',
+                                        background: 'rgba(104,63,191,0.08)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: 'var(--color-accent)',
+                                        flexShrink: 0,
+                                    }}>
+                                        {item.icon}
+                                    </div>
+                                    <div>
+                                        <p style={{
+                                            fontFamily: 'var(--font-heading)',
+                                            fontSize: '0.65rem',
+                                            fontWeight: 700,
+                                            letterSpacing: '0.15em',
+                                            textTransform: 'uppercase',
+                                            color: 'var(--color-text-muted-dark)',
+                                            margin: '0 0 0.2rem',
+                                        }}>
+                                            {item.label}
+                                        </p>
+                                        <p style={{
+                                            fontFamily: 'var(--font-body)',
+                                            fontSize: '0.9rem',
+                                            color: 'var(--color-text-dark)',
+                                            fontWeight: 500,
+                                            margin: 0,
+                                        }}>
+                                            {item.value}
+                                        </p>
+                                    </div>
+                                </a>
+                            ))}
                         </div>
                     </motion.div>
 
-                    {/* Form Side */}
+                    {/* ── Right: Form ──────────────────────────────────────── */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="lg:w-2/3"
+                        transition={{ delay: 0.15 }}
                     >
-                        <form onSubmit={handleSubmit} className="glass p-8 md:p-10 rounded-3xl border border-white/10 space-y-8 relative">
-                            {/* Contact Info Row */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-white/60 ml-1 uppercase tracking-wider">Your Name *</label>
+                        <form
+                            onSubmit={handleSubmit}
+                            style={{
+                                background: '#ffffff',
+                                border: '1px solid rgba(0,0,0,0.07)',
+                                borderRadius: '20px',
+                                padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+                                boxShadow: 'var(--shadow-card-light)',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '1.5rem',
+                            }}
+                        >
+                            {/* Name + Email */}
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+                                <div>
+                                    <label style={labelStyle}>Your Name *</label>
                                     <input
-                                        type="text"
-                                        name="name"
-                                        required
-                                        value={formData.name}
-                                        onChange={handleChange}
+                                        type="text" name="name" required
+                                        value={formData.name} onChange={handleChange}
                                         placeholder="Enter your name"
-                                        className="w-full bg-white/5 border border-white/10 focus:border-primary focus:shadow-[0_0_15px_rgba(168,85,247,0.2)] p-4 rounded-xl outline-none transition-all"
+                                        style={inputStyle}
+                                        onFocus={handleFocus} onBlur={handleBlur}
                                     />
                                 </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-white/60 ml-1 uppercase tracking-wider">Email Address *</label>
+                                <div>
+                                    <label style={labelStyle}>Email Address *</label>
                                     <input
-                                        type="email"
-                                        name="email"
-                                        required
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        placeholder="john@example.com"
-                                        className="w-full bg-white/5 border border-white/10 focus:border-primary focus:shadow-[0_0_15px_rgba(168,85,247,0.2)] p-4 rounded-xl outline-none transition-all"
+                                        type="email" name="email" required
+                                        value={formData.email} onChange={handleChange}
+                                        placeholder="you@example.com"
+                                        style={inputStyle}
+                                        onFocus={handleFocus} onBlur={handleBlur}
                                     />
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold text-white/60 ml-1 uppercase tracking-wider">Phone Number *</label>
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    required
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    placeholder="+91 XXXXX XXXXX"
-                                    className="w-full bg-white/5 border border-white/10 focus:border-primary focus:shadow-[0_0_15px_rgba(168,85,247,0.2)] p-4 rounded-xl outline-none transition-all"
+                            {/* Phone + Company */}
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+                                <div>
+                                    <label style={labelStyle}>Phone Number *</label>
+                                    <input
+                                        type="tel" name="phone" required
+                                        value={formData.phone} onChange={handleChange}
+                                        placeholder="+91 XXXXX XXXXX"
+                                        style={inputStyle}
+                                        onFocus={handleFocus} onBlur={handleBlur}
+                                    />
+                                </div>
+                                <div>
+                                    <label style={labelStyle}>Company Name</label>
+                                    <input
+                                        type="text" name="company"
+                                        value={formData.company} onChange={handleChange}
+                                        placeholder="Your company"
+                                        style={inputStyle}
+                                        onFocus={handleFocus} onBlur={handleBlur}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Services */}
+                            <div>
+                                <label style={labelStyle}>Services Required *</label>
+                                <div style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(2, 1fr)',
+                                    gap: '0.6rem',
+                                    marginTop: '0.2rem',
+                                }}>
+                                    {serviceOptions.map((s) => {
+                                        const checked = formData.services.includes(s);
+                                        return (
+                                            <label
+                                                key={s}
+                                                style={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '0.65rem',
+                                                    cursor: 'pointer',
+                                                    padding: '0.65rem 0.9rem',
+                                                    borderRadius: '10px',
+                                                    border: `1px solid ${checked ? 'var(--color-accent)' : 'rgba(0,0,0,0.1)'}`,
+                                                    background: checked ? 'rgba(104,63,191,0.06)' : '#fff',
+                                                    transition: 'all 0.2s ease',
+                                                    userSelect: 'none',
+                                                }}
+                                                onClick={() => handleServiceToggle(s)}
+                                            >
+                                                <div style={{
+                                                    width: 18, height: 18,
+                                                    borderRadius: '5px',
+                                                    border: `1.5px solid ${checked ? 'var(--color-accent)' : 'rgba(0,0,0,0.2)'}`,
+                                                    background: checked ? 'var(--color-accent)' : '#fff',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    flexShrink: 0,
+                                                    transition: 'all 0.2s ease',
+                                                }}>
+                                                    {checked && <Check size={11} color="#fff" strokeWidth={3} />}
+                                                </div>
+                                                <span style={{
+                                                    fontFamily: 'var(--font-body)',
+                                                    fontSize: '0.84rem',
+                                                    color: checked ? 'var(--color-accent)' : 'var(--color-text-mid)',
+                                                    fontWeight: checked ? 600 : 400,
+                                                    transition: 'color 0.2s ease',
+                                                }}>
+                                                    {s}
+                                                </span>
+                                            </label>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            {/* Budget + Timeline */}
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
+                                <div>
+                                    <label style={labelStyle}>Project Budget *</label>
+                                    <select
+                                        name="budget" required
+                                        value={formData.budget} onChange={handleChange}
+                                        style={{ ...inputStyle, cursor: 'pointer' }}
+                                        onFocus={handleFocus} onBlur={handleBlur}
+                                    >
+                                        <option value="" disabled>Select Budget</option>
+                                        <option>₹5,000 – ₹10,000</option>
+                                        <option>₹10,000 – ₹25,000</option>
+                                        <option>₹25,000 – ₹50,000</option>
+                                        <option>₹50,000+</option>
+                                        <option>Not sure</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style={labelStyle}>Timeline *</label>
+                                    <select
+                                        name="timeline" required
+                                        value={formData.timeline} onChange={handleChange}
+                                        style={{ ...inputStyle, cursor: 'pointer' }}
+                                        onFocus={handleFocus} onBlur={handleBlur}
+                                    >
+                                        <option value="" disabled>Select Timeline</option>
+                                        <option>Urgent (1–3 days)</option>
+                                        <option>1 week</option>
+                                        <option>2–4 weeks</option>
+                                        <option>1–3 months</option>
+                                        <option>Flexible</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {/* Message */}
+                            <div>
+                                <label style={labelStyle}>Message / Project Details *</label>
+                                <textarea
+                                    name="message" required rows={5}
+                                    value={formData.message} onChange={handleChange}
+                                    placeholder="Tell us about your project…"
+                                    style={{ ...inputStyle, resize: 'none' }}
+                                    onFocus={handleFocus} onBlur={handleBlur}
                                 />
                             </div>
 
-                            {/* Business Info Row */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-white/60 ml-1 uppercase tracking-wider">Company Name</label>
-                                    <input
-                                        type="text"
-                                        name="company"
-                                        value={formData.company}
-                                        onChange={handleChange}
-                                        placeholder="Your company"
-                                        className="w-full bg-white/5 border border-white/10 focus:border-primary focus:shadow-[0_0_15px_rgba(168,85,247,0.2)] p-4 rounded-xl outline-none transition-all"
-                                    />
+                            {/* Agreement */}
+                            <label
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.75rem',
+                                    cursor: 'pointer',
+                                    userSelect: 'none',
+                                }}
+                                onClick={() => setFormData(prev => ({ ...prev, agreement: !prev.agreement }))}
+                            >
+                                <div style={{
+                                    width: 20, height: 20,
+                                    borderRadius: '5px',
+                                    border: `1.5px solid ${formData.agreement ? 'var(--color-accent)' : 'rgba(0,0,0,0.2)'}`,
+                                    background: formData.agreement ? 'var(--color-accent)' : '#fff',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexShrink: 0,
+                                    transition: 'all 0.2s ease',
+                                }}>
+                                    {formData.agreement && <Check size={12} color="#fff" strokeWidth={3} />}
                                 </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-white/60 ml-1 uppercase tracking-wider">Website URL</label>
-                                    <input
-                                        type="url"
-                                        name="website"
-                                        value={formData.website}
-                                        onChange={handleChange}
-                                        placeholder="https://example.com"
-                                        className="w-full bg-white/5 border border-white/10 focus:border-primary focus:shadow-[0_0_15px_rgba(168,85,247,0.2)] p-4 rounded-xl outline-none transition-all"
-                                    />
-                                </div>
-                            </div>
-
-                            {/* Service Checkboxes */}
-                            <div className="space-y-4">
-                                <label className="text-sm font-semibold text-white/60 ml-1 uppercase tracking-wider block">Services Required *</label>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    {serviceOptions.map((service) => (
-                                        <label
-                                            key={service}
-                                            className="flex items-center space-x-3 cursor-pointer group"
-                                        >
-                                            <div
-                                                onClick={() => handleCheckboxChange(service)}
-                                                className={`w-6 h-6 rounded border flex items-center justify-center transition-all ${formData.services.includes(service)
-                                                    ? 'bg-primary border-primary shadow-[0_0_10px_rgba(168,85,247,0.4)]'
-                                                    : 'border-white/20 group-hover:border-primary/50'
-                                                    }`}
-                                            >
-                                                {formData.services.includes(service) && <Check size={14} className="text-white" />}
-                                            </div>
-                                            <span className="text-sm text-white/70 group-hover:text-white transition-colors">
-                                                {service}
-                                            </span>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Project Details Row */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-white/60 ml-1 uppercase tracking-wider">Project Budget *</label>
-                                    <select
-                                        name="budget"
-                                        required
-                                        value={formData.budget}
-                                        onChange={handleChange}
-                                        className="w-full bg-white/5 border border-white/10 focus:border-primary p-4 rounded-xl outline-none transition-all appearance-none cursor-pointer"
-                                    >
-                                        <option value="" disabled className="bg-dark">Select Budget</option>
-                                        <option value="₹5,000 – ₹10,000" className="bg-dark">₹5,000 – ₹10,000</option>
-                                        <option value="₹10,000 – ₹25,000" className="bg-dark">₹10,000 – ₹25,000</option>
-                                        <option value="₹25,000 – ₹50,000" className="bg-dark">₹25,000 – ₹50,000</option>
-                                        <option value="₹50,000+" className="bg-dark">₹50,000+</option>
-                                        <option value="Not sure" className="bg-dark">Not sure</option>
-                                    </select>
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-semibold text-white/60 ml-1 uppercase tracking-wider">Timeline *</label>
-                                    <select
-                                        name="timeline"
-                                        required
-                                        value={formData.timeline}
-                                        onChange={handleChange}
-                                        className="w-full bg-white/5 border border-white/10 focus:border-primary p-4 rounded-xl outline-none transition-all appearance-none cursor-pointer"
-                                    >
-                                        <option value="" disabled className="bg-dark">Select Timeline</option>
-                                        <option value="Urgent (1–3 days)" className="bg-dark">Urgent (1–3 days)</option>
-                                        <option value="1 week" className="bg-dark">1 week</option>
-                                        <option value="2–4 weeks" className="bg-dark">2–4 weeks</option>
-                                        <option value="Flexible" className="bg-dark">Flexible</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold text-white/60 ml-1 uppercase tracking-wider">Message / Project Details *</label>
-                                <textarea
-                                    name="message"
-                                    required
-                                    rows="5"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    placeholder="Tell us about your project requirements..."
-                                    className="w-full bg-white/5 border border-white/10 focus:border-primary focus:shadow-[0_0_15px_rgba(168,85,247,0.2)] p-4 rounded-xl outline-none transition-all resize-none"
-                                ></textarea>
-                            </div>
-
-                            <div className="flex items-center space-x-3 cursor-pointer group pt-2 pb-4">
-                                <div
-                                    onClick={() => setFormData(prev => ({ ...prev, agreement: !prev.agreement }))}
-                                    className={`w-5 h-5 rounded border flex items-center justify-center transition-all ${formData.agreement
-                                        ? 'bg-primary border-primary'
-                                        : 'border-white/20 group-hover:border-primary/50'
-                                        }`}
-                                >
-                                    {formData.agreement && <Check size={12} className="text-white" />}
-                                </div>
-                                <span className="text-sm text-white/50 group-hover:text-white transition-colors">
+                                <span style={{
+                                    fontFamily: 'var(--font-body)',
+                                    fontSize: '0.85rem',
+                                    color: 'var(--color-text-muted-dark)',
+                                }}>
                                     I agree to be contacted via Email / Phone / WhatsApp
                                 </span>
-                            </div>
+                            </label>
 
+                            {/* Submit */}
                             <motion.button
-                                whileHover={{ scale: 1.02 }}
+                                whileHover={{ scale: 1.015 }}
                                 whileTap={{ scale: 0.98 }}
-                                disabled={status === 'sending' || !formData.agreement}
-                                className={`btn-primary w-full flex items-center justify-center space-x-3 py-4 text-lg font-bold uppercase tracking-widest ${(!formData.agreement || status === 'sending') ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                type="submit"
+                                disabled={!formData.agreement || status === 'sending'}
+                                style={{
+                                    width: '100%',
+                                    padding: '1rem',
+                                    borderRadius: '100px',
+                                    border: 'none',
+                                    background: status === 'success'
+                                        ? '#22c55e'
+                                        : !formData.agreement || status === 'sending'
+                                            ? 'rgba(0,0,0,0.2)'
+                                            : 'var(--color-text-dark)',
+                                    color: '#fff',
+                                    fontFamily: 'var(--font-heading)',
+                                    fontSize: '0.92rem',
+                                    fontWeight: 700,
+                                    letterSpacing: '0.05em',
+                                    cursor: !formData.agreement || status === 'sending' ? 'not-allowed' : 'pointer',
+                                    transition: 'all 0.3s ease',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '0.6rem',
+                                }}
                             >
-                                <span>{status === 'sending' ? 'Sending...' : status === 'success' ? 'Sent Successfully!' : 'Send Message'}</span>
-                                {status === 'success' ? <Check size={20} /> : <Send size={20} />}
+                                {status === 'sending' ? (
+                                    'Sending...'
+                                ) : status === 'success' ? (
+                                    <><Check size={18} /> Message Sent Successfully!</>
+                                ) : (
+                                    <><Send size={17} /> Send Message</>
+                                )}
                             </motion.button>
-
-                            {status === 'success' && (
-                                <motion.p
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="text-center text-primary font-semibold text-sm mt-4"
-                                >
-                                    Thank you! We'll get back to you within 24 hours.
-                                </motion.p>
-                            )}
                         </form>
                     </motion.div>
                 </div>
             </div>
+
+            <style>{`
+                @media (max-width: 900px) {
+                    #contact .container > div {
+                        grid-template-columns: 1fr !important;
+                        gap: 3rem !important;
+                    }
+                    #contact .container > div > div:first-child {
+                        position: static !important;
+                    }
+                    #contact form > div:first-child,
+                    #contact form > div:nth-child(2),
+                    #contact form > div:nth-child(5) {
+                        grid-template-columns: 1fr !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Smartphone, Layout, Cloud, Bot, Cpu, Target, X, CheckCircle } from 'lucide-react';
-import TiltCard from '../components/TiltCard';
+import { Link } from 'react-router-dom';
+import { X, CheckCircle } from 'lucide-react';
 
 const services = [
     {
+        id: 'web-dev',
         title: 'Web Development',
-        description: 'Scalable full-stack applications & modern landing pages.',
-        icon: <Code size={24} />,
-        color: 'from-blue-500 to-cyan-500',
-        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800',
+        tagline: 'Scalable full-stack applications & modern landing pages.',
         details: {
             overview: 'We craft high-performance web applications tailored to your business needs. From simple landing pages to complex enterprise platforms, our team delivers pixel-perfect, scalable solutions.',
             features: [
@@ -24,13 +22,11 @@ const services = [
         },
     },
     {
+        id: 'mobile-apps',
         title: 'Mobile Apps',
-        description: 'Native & cross-platform mobile experiences for iOS and Android.',
-        icon: <Smartphone size={24} />,
-        color: 'from-purple-500 to-pink-500',
-        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800',
+        tagline: 'Native & cross-platform experiences for iOS and Android.',
         details: {
-            overview: 'We build mobile applications that feel native on every platform. Our team delivers smooth user experiences whether you need iOS-only, Android-only, or cross-platform solutions.',
+            overview: 'We build mobile applications that feel native on every platform — smooth, fast, and delightful.',
             features: [
                 'Native iOS (Swift/SwiftUI) development',
                 'Native Android (Kotlin/Jetpack Compose) development',
@@ -43,11 +39,9 @@ const services = [
         },
     },
     {
+        id: 'ui-ux',
         title: 'UI/UX Design',
-        description: 'Aesthetics meets functionality. Stunning user-centered interfaces.',
-        icon: <Layout size={24} />,
-        color: 'from-indigo-500 to-blue-500',
-        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800',
+        tagline: 'Aesthetics meets functionality — user-centered interfaces.',
         details: {
             overview: 'Design that converts. We blend stunning visuals with deep UX research to create interfaces that delight users and drive business outcomes.',
             features: [
@@ -62,13 +56,11 @@ const services = [
         },
     },
     {
+        id: 'cloud-devops',
         title: 'Cloud & DevOps',
-        description: 'Scalable cloud infrastructure & reliable deployment pipelines.',
-        icon: <Cloud size={24} />,
-        color: 'from-cyan-500 to-teal-500',
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
+        tagline: 'Scalable infrastructure & reliable deployment pipelines.',
         details: {
-            overview: 'We build resilient cloud infrastructure that scales with your business. Our DevOps practices ensure reliable deployments, minimal downtime, and optimized cloud costs.',
+            overview: 'We build resilient cloud infrastructure that scales with your business. Our DevOps practices ensure reliable deployments and optimized cloud costs.',
             features: [
                 'AWS, Google Cloud, and Azure setup & management',
                 'CI/CD pipeline setup (GitHub Actions, GitLab CI)',
@@ -81,13 +73,11 @@ const services = [
         },
     },
     {
-        title: 'Maintenance',
-        description: '24/7 monitoring, security updates, and performance tuning.',
-        icon: <Bot size={24} />,
-        color: 'from-orange-500 to-red-500',
-        image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800',
+        id: 'maintenance',
+        title: 'Support & Maintenance',
+        tagline: '24/7 monitoring, security updates, and performance tuning.',
         details: {
-            overview: 'We keep your applications healthy after launch. Our support plans include proactive monitoring, rapid bug resolution, and continuous improvements.',
+            overview: 'We keep your applications healthy after launch — proactive monitoring, rapid bug resolution, and continuous improvements.',
             features: [
                 '24/7 uptime monitoring and alerting',
                 'Rapid bug fixes with SLA guarantees',
@@ -100,13 +90,11 @@ const services = [
         },
     },
     {
+        id: 'custom-software',
         title: 'Custom Software',
-        description: 'Bespoke enterprise tools crafted for your specific workflows.',
-        icon: <Cpu size={24} />,
-        color: 'from-green-500 to-emerald-500',
-        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
+        tagline: 'Bespoke enterprise tools crafted for your specific workflows.',
         details: {
-            overview: 'Off-the-shelf software rarely fits perfectly. We build bespoke software solutions designed around your exact workflows, giving your business a competitive edge.',
+            overview: "Off-the-shelf software rarely fits perfectly. We build bespoke solutions designed around your exact workflows, giving your business a competitive edge.",
             features: [
                 'Enterprise resource planning (ERP) systems',
                 'Custom booking and scheduling platforms',
@@ -119,11 +107,9 @@ const services = [
         },
     },
     {
+        id: 'digital-marketing',
         title: 'Digital Marketing',
-        description: 'Data-driven growth strategies and technical SEO optimization.',
-        icon: <Target size={24} />,
-        color: 'from-red-500 to-orange-500',
-        image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=800',
+        tagline: 'Data-driven growth strategies and technical SEO optimization.',
         details: {
             overview: 'Visibility drives growth. We combine technical SEO, content strategy, and performance marketing to bring the right customers to your digital doorstep.',
             features: [
@@ -139,13 +125,12 @@ const services = [
     },
 ];
 
-// ─── Modal Component ─────────────────────────────────────────────────────────
+// ─── Service Detail Modal ──────────────────────────────────────────────────────
 const ServiceModal = ({ service, onClose }) => {
     if (!service) return null;
 
     return (
         <AnimatePresence>
-            {/* Backdrop – inline style guarantees it covers everything including navbar */}
             <motion.div
                 key="backdrop"
                 initial={{ opacity: 0 }}
@@ -154,94 +139,127 @@ const ServiceModal = ({ service, onClose }) => {
                 onClick={onClose}
                 style={{
                     position: 'fixed',
-                    top: 0, left: 0, right: 0, bottom: 0,
+                    inset: 0,
                     zIndex: 9999,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: '24px',
-                    background: 'rgba(0,0,0,0.82)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
+                    background: 'rgba(0,0,0,0.75)',
+                    backdropFilter: 'blur(10px)',
                 }}
             >
-                {/* Modal panel */}
                 <motion.div
                     key="panel"
-                    initial={{ opacity: 0, scale: 0.92, y: 50 }}
+                    initial={{ opacity: 0, scale: 0.94, y: 40 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.92, y: 50 }}
-                    transition={{ type: 'spring', stiffness: 280, damping: 26 }}
+                    exit={{ opacity: 0, scale: 0.94, y: 40 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 28 }}
                     onClick={(e) => e.stopPropagation()}
                     style={{
                         position: 'relative',
                         width: '100%',
-                        maxWidth: '680px',
+                        maxWidth: '640px',
                         maxHeight: '82vh',
                         overflowY: 'auto',
-                        borderRadius: '24px',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        background: 'linear-gradient(145deg, #13131e, #1a1a2e)',
-                        boxShadow: '0 30px 80px rgba(0,0,0,0.6), 0 0 40px rgba(168,85,247,0.15)',
+                        borderRadius: '20px',
+                        background: '#f5f5f5',
+                        boxShadow: '0 30px 80px rgba(0,0,0,0.3)',
                     }}
                 >
-                    {/* Close button */}
+                    {/* Close */}
                     <button
                         onClick={onClose}
-                        className="absolute top-5 right-5 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                        style={{
+                            position: 'absolute', top: '1.25rem', right: '1.25rem',
+                            background: 'rgba(0,0,0,0.08)', border: 'none',
+                            borderRadius: '50%', width: 36, height: 36,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            cursor: 'pointer', color: 'var(--color-text-dark)',
+                            transition: 'background 0.2s',
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.15)'}
+                        onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.08)'}
                     >
-                        <X size={20} />
+                        <X size={18} />
                     </button>
 
-                    {/* Header */}
-                    <div className="p-8 pb-4">
-                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} p-3.5 flex items-center justify-center text-white shadow-lg mb-5`}>
-                            {service.icon}
-                        </div>
-                        <h2 className="text-2xl font-bold text-white mb-2">{service.title}</h2>
-                        <p className="text-white/60 leading-relaxed">{service.details.overview}</p>
-                    </div>
+                    <div style={{ padding: '2rem' }}>
+                        {/* Accent bar */}
+                        <div style={{
+                            width: 40, height: 4, background: 'var(--color-accent)',
+                            borderRadius: 4, marginBottom: '1.25rem',
+                        }} />
 
-                    {/* Features */}
-                    <div className="px-8 py-4">
-                        <h3 className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-4">What's Included</h3>
-                        <ul className="space-y-3">
+                        <h2 style={{
+                            fontFamily: 'var(--font-heading)', fontSize: '1.7rem',
+                            fontWeight: 900, color: 'var(--color-text-dark)', marginBottom: '0.75rem',
+                        }}>
+                            {service.title}
+                        </h2>
+                        <p style={{ color: 'var(--color-text-muted-dark)', lineHeight: 1.8, marginBottom: '2rem' }}>
+                            {service.details.overview}
+                        </p>
+
+                        <h3 style={{
+                            fontFamily: 'var(--font-heading)', fontSize: '0.7rem',
+                            fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase',
+                            color: 'var(--color-text-muted-dark)', marginBottom: '1rem',
+                        }}>
+                            What's Included
+                        </h3>
+                        <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', marginBottom: '2rem' }}>
                             {service.details.features.map((feat, i) => (
-                                <li key={i} className="flex items-start gap-3 text-white/80 text-sm">
-                                    <CheckCircle size={17} className="mt-0.5 flex-shrink-0 text-primary" />
+                                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', color: 'var(--color-text-mid)', fontSize: '0.9rem' }}>
+                                    <CheckCircle size={16} style={{ color: 'var(--color-accent)', marginTop: 3, flexShrink: 0 }} />
                                     {feat}
                                 </li>
                             ))}
                         </ul>
-                    </div>
 
-                    {/* Tech stack */}
-                    <div className="px-8 py-6">
-                        <h3 className="text-sm font-semibold text-white/40 uppercase tracking-widest mb-4">Technologies</h3>
-                        <div className="flex flex-wrap gap-2">
+                        <h3 style={{
+                            fontFamily: 'var(--font-heading)', fontSize: '0.7rem',
+                            fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase',
+                            color: 'var(--color-text-muted-dark)', marginBottom: '0.75rem',
+                        }}>
+                            Technologies
+                        </h3>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2rem' }}>
                             {service.details.tech.map((t) => (
-                                <span
-                                    key={t}
-                                    className="px-3 py-1 rounded-full text-xs font-medium border border-white/10 bg-white/5 text-white/70"
-                                >
+                                <span key={t} style={{
+                                    padding: '0.35rem 0.85rem', borderRadius: '100px',
+                                    background: 'rgba(104,63,191,0.08)', color: 'var(--color-accent)',
+                                    fontSize: '0.8rem', fontWeight: 600,
+                                    border: '1px solid rgba(104,63,191,0.2)',
+                                    fontFamily: 'var(--font-heading)',
+                                }}>
                                     {t}
                                 </span>
                             ))}
                         </div>
-                    </div>
 
-                    {/* CTA */}
-                    <div className="px-8 pb-8">
-                        <a
-                            href="/contact"
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-all"
+                        <Link
+                            to="/contact"
+                            onClick={onClose}
                             style={{
-                                background: 'linear-gradient(135deg, #a855f7, #3b82f6)',
-                                boxShadow: '0 0 24px rgba(168,85,247,0.4)',
+                                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                                padding: '0.9rem 2rem', borderRadius: '100px',
+                                background: 'var(--color-text-dark)', color: '#fff',
+                                fontFamily: 'var(--font-heading)', fontWeight: 700,
+                                fontSize: '0.88rem', textDecoration: 'none',
+                                transition: 'all 0.3s ease',
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = 'var(--color-accent)';
+                                e.currentTarget.style.boxShadow = 'var(--shadow-btn)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = 'var(--color-text-dark)';
+                                e.currentTarget.style.boxShadow = 'none';
                             }}
                         >
-                            Get a Free Quote →
-                        </a>
+                            Get a Quote →
+                        </Link>
                     </div>
                 </motion.div>
             </motion.div>
@@ -249,96 +267,176 @@ const ServiceModal = ({ service, onClose }) => {
     );
 };
 
-// ─── Main Section ─────────────────────────────────────────────────────────────
+// ─── Main Section ──────────────────────────────────────────────────────────────
 const Services = () => {
-    const [activeService, setActiveService] = useState(null);
+    const [active, setActive] = useState(null);
 
     return (
         <>
-            <section id="services" className="section bg-dark-surface py-24 relative overflow-hidden">
-                {/* Background Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+            <section
+                id="services"
+                style={{
+                    background: 'var(--color-bg-dark)',
+                    padding: 'var(--spacing-xl) 0',
+                }}
+            >
+                <div className="container">
+                    {/* Header */}
+                    <div style={{ marginBottom: '4rem' }}>
+                        <motion.span
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            style={{
+                                display: 'inline-block',
+                                fontFamily: 'var(--font-heading)',
+                                fontSize: '0.7rem', fontWeight: 700,
+                                letterSpacing: '0.2em', textTransform: 'uppercase',
+                                color: 'var(--color-accent)', marginBottom: '1rem',
+                            }}
+                        >
+                            What We Do
+                        </motion.span>
 
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-20">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-4xl md:text-5xl font-bold mb-4"
-                        >
-                            Our <span className="glow-text">Services</span>
-                        </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-white/60 max-w-xl mx-auto"
-                        >
-                            We provide a wide range of technology services to help your business scale
-                            and succeed in the digital era.
-                        </motion.p>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1.5rem' }}>
+                            <motion.h2
+                                initial={{ opacity: 0, y: 24 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                style={{
+                                    fontFamily: 'var(--font-heading)',
+                                    fontSize: 'clamp(2rem, 4vw, 3rem)',
+                                    fontWeight: 900, color: '#ffffff',
+                                    lineHeight: 1.1, margin: 0,
+                                    maxWidth: '520px',
+                                }}
+                            >
+                                From sharpening your brand's<br/>core narrative to delivering it<br/>consistently.
+                            </motion.h2>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 16 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                style={{ maxWidth: '320px' }}
+                            >
+                                <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, fontSize: '0.95rem', margin: 0 }}>
+                                    We ensure your digital product stands out with intention
+                                    and scales with clarity.
+                                </p>
+                            </motion.div>
+                        </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {services.map((service, index) => (
+                    {/* Service Rows — Magsmen arrow list style */}
+                    <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                        {services.map((service, i) => (
                             <motion.div
-                                key={service.title}
-                                initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                key={service.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
-                                onClick={() => setActiveService(service)}
-                                className={`group relative h-72 rounded-3xl overflow-hidden cursor-pointer border border-white/5 shadow-xl ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
-                                    }`}
+                                transition={{ delay: i * 0.07 }}
+                                onClick={() => setActive(service)}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    padding: '1.5rem 0',
+                                    borderBottom: '1px solid rgba(255,255,255,0.08)',
+                                    cursor: 'pointer',
+                                    gap: '2rem',
+                                    transition: 'all 0.25s ease',
+                                }}
+                                whileHover={{ paddingLeft: '0.5rem' }}
                             >
-                                {/* Background Image */}
-                                <div className="absolute inset-0 w-full h-full">
-                                    <img
-                                        src={service.image}
-                                        alt={service.title}
-                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out brightness-75 group-hover:brightness-100"
-                                    />
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1 }}>
+                                    <span style={{
+                                        fontFamily: 'var(--font-heading)',
+                                        fontSize: '0.72rem', fontWeight: 700,
+                                        color: 'var(--color-accent)', minWidth: '1.5rem',
+                                        letterSpacing: '0.05em',
+                                    }}>
+                                        0{i + 1}
+                                    </span>
+                                    <h3 style={{
+                                        fontFamily: 'var(--font-heading)',
+                                        fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+                                        fontWeight: 800, color: '#ffffff',
+                                        margin: 0, lineHeight: 1.2,
+                                    }}>
+                                        {service.title}
+                                    </h3>
                                 </div>
 
-                                {/* Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500" />
+                                <p style={{
+                                    color: 'rgba(255,255,255,0.4)',
+                                    fontSize: '0.88rem',
+                                    max: '320px',
+                                    flex: '0 1 280px',
+                                    margin: 0,
+                                    lineHeight: 1.5,
+                                    display: 'none',
+                                }}
+                                    className="service-tagline"
+                                >
+                                    {service.tagline}
+                                </p>
 
-                                {/* Hover Glow Border */}
-                                <div className={`absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} style={{ WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', padding: '2px' }} />
-
-                                {/* Content */}
-                                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                                    <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${service.color} p-2 flex items-center justify-center text-white shadow-lg mb-4 opacity-80 group-hover:opacity-100 transition-opacity`}>
-                                            {service.icon}
-                                        </div>
-                                        <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
-                                            {service.title}
-                                        </h3>
-                                        <p className="text-white/60 text-sm line-clamp-2 pr-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                            {service.description}
-                                        </p>
-                                    </div>
-
-                                    {/* Action Icon */}
-                                    <div className="absolute bottom-6 right-6 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-500 delay-100">
-                                        <span className="text-xl font-light leading-none">+</span>
-                                    </div>
+                                {/* Arrow */}
+                                <div style={{
+                                    width: 40, height: 40,
+                                    border: '1px solid rgba(255,255,255,0.15)',
+                                    borderRadius: '50%',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    color: '#fff', fontSize: '1.1rem',
+                                    flexShrink: 0,
+                                    transition: 'all 0.25s ease',
+                                }}>
+                                    ↗
                                 </div>
                             </motion.div>
                         ))}
                     </div>
+
+                    {/* CTA */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ marginTop: '3rem' }}
+                    >
+                        <Link
+                            to="/contact"
+                            style={{
+                                display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+                                padding: '0.9rem 2rem', borderRadius: '100px',
+                                border: '1px solid rgba(255,255,255,0.2)',
+                                color: '#fff', background: 'transparent',
+                                fontFamily: 'var(--font-heading)', fontWeight: 700,
+                                fontSize: '0.88rem', textDecoration: 'none',
+                                transition: 'all 0.3s ease',
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = 'var(--color-accent)';
+                                e.currentTarget.style.borderColor = 'var(--color-accent)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = 'transparent';
+                                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+                            }}
+                        >
+                            Get a Free Consultation →
+                        </Link>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Modal */}
-            {activeService && (
-                <ServiceModal
-                    service={activeService}
-                    onClose={() => setActiveService(null)}
-                />
+            {active && (
+                <ServiceModal service={active} onClose={() => setActive(null)} />
             )}
         </>
     );

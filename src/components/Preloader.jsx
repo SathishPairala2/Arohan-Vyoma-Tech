@@ -10,12 +10,12 @@ const Preloader = () => {
             setProgress((prev) => {
                 if (prev >= 100) {
                     clearInterval(timer);
-                    setTimeout(() => setLoading(false), 500);
+                    setTimeout(() => setLoading(false), 400);
                     return 100;
                 }
-                return prev + 1;
+                return prev + 2;
             });
-        }, 20);
+        }, 18);
         return () => clearInterval(timer);
     }, []);
 
@@ -23,43 +23,112 @@ const Preloader = () => {
         <AnimatePresence>
             {loading && (
                 <motion.div
-                    exit={{ opacity: 0, y: -100 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center"
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+                    style={{
+                        position: 'fixed',
+                        inset: 0,
+                        zIndex: 9999,
+                        background: '#F5F5F5',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '2rem',
+                    }}
                 >
+                    {/* Logo mark */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
+                        initial={{ opacity: 0, scale: 0.7 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="relative mb-8"
+                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '0.75rem',
+                        }}
                     >
-                        <div className="w-24 h-24 border-4 border-white/5 rounded-2xl flex items-center justify-center font-bold text-3xl overflow-hidden">
+                        {/* Animated logo box */}
+                        <div style={{
+                            width: 72,
+                            height: 72,
+                            borderRadius: '18px',
+                            background: 'var(--color-text-dark)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            overflow: 'hidden',
+                            position: 'relative',
+                        }}>
+                            {/* Purple fill rising with progress */}
                             <motion.div
-                                initial={{ y: 100 }}
-                                animate={{ y: 0 }}
-                                className="bg-gradient-to-br from-primary to-secondary absolute inset-0 flex items-center justify-center"
-                            >
+                                initial={{ scaleY: 0 }}
+                                animate={{ scaleY: progress / 100 }}
+                                style={{
+                                    position: 'absolute',
+                                    inset: 0,
+                                    background: 'var(--color-accent)',
+                                    transformOrigin: 'bottom',
+                                }}
+                            />
+                            <span style={{
+                                fontFamily: 'var(--font-heading)',
+                                fontWeight: 900,
+                                fontSize: '1.3rem',
+                                color: '#fff',
+                                letterSpacing: '-0.02em',
+                                position: 'relative',
+                                zIndex: 1,
+                            }}>
                                 AVT
-                            </motion.div>
+                            </span>
                         </div>
-                        {/* Pulsing effect */}
-                        <div className="absolute inset-0 border-4 border-primary rounded-2xl animate-ping opacity-20"></div>
+
+                        {/* Brand name */}
+                        <p style={{
+                            fontFamily: 'var(--font-heading)',
+                            fontSize: '0.7rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.25em',
+                            textTransform: 'uppercase',
+                            color: 'var(--color-text-muted-dark)',
+                        }}>
+                            Arohan Vyoma Tech
+                        </p>
                     </motion.div>
 
-                    <div className="w-64 h-1 bg-white/5 rounded-full overflow-hidden relative">
+                    {/* Progress bar */}
+                    <div style={{
+                        width: '200px',
+                        height: '2px',
+                        background: 'rgba(0,0,0,0.08)',
+                        borderRadius: '2px',
+                        overflow: 'hidden',
+                    }}>
                         <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${progress}%` }}
-                            className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary to-secondary"
+                            style={{
+                                height: '100%',
+                                background: 'var(--color-accent)',
+                                borderRadius: '2px',
+                            }}
                         />
                     </div>
 
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="mt-4 text-xs tracking-[0.5em] uppercase text-white/40 font-semibold"
-                    >
-                        Initializing Reality... {progress}%
-                    </motion.p>
+                    {/* % label */}
+                    <p style={{
+                        fontFamily: 'var(--font-heading)',
+                        fontSize: '0.68rem',
+                        fontWeight: 700,
+                        letterSpacing: '0.2em',
+                        textTransform: 'uppercase',
+                        color: 'var(--color-text-muted-dark)',
+                        marginTop: '-1rem',
+                    }}>
+                        Loading {progress}%
+                    </p>
                 </motion.div>
             )}
         </AnimatePresence>
